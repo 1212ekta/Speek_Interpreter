@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "8b5f3a09-7f5b-4b21-b0db-f952f205c088",
+		"name": "Speek Scripting Engine Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Execute Speek Code",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"code\": \"let score be 85\\nlet passing_grade be 50\\n\\nif score > passing_grade then\\n    say \\\"You passed the exam!\\\"\\n    say \\\"Congratulations.\\\"\\n\\nsay \\\"End of program.\\\"\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/run",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"run"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful Execution",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"let score be 85\\nlet passing_grade be 50\\n\\nif score > passing_grade then\\n    say \\\"You passed the exam!\\\"\\n    say \\\"Congratulations.\\\"\\n\\nsay \\\"End of program.\\\"\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/run",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"run"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": true,\n    \"output\": \"You passed the exam!\\nCongratulations.\\nEnd of program.\",\n    \"errors\": []\n}"
+				},
+				{
+					"name": "Execution Error (Undefined Variable)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"code\": \"let score be 85\\nsay passing_grade\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/run",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"run"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": false,\n    \"output\": \"\",\n    \"errors\": [\n        \"Variable not defined: passing_grade\"\n    ]\n}"
+				}
+			]
+		}
+	]
+}
